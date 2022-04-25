@@ -25,7 +25,7 @@
 (ert-deftest lsp-dart--flutter-repo-p--true-test ()
   (with-mock
    (mock (locate-dominating-file * "flutter") => "/sdk/bin")
-   (mock (file-regular-p "/sdk/bin/flutter") => t)
+   (mock (file-regular-p (f-join (f-root) "/sdk/bin/flutter")) => t)
    (mock (file-directory-p (f-join (f-root) "/sdk/bin/cache/dart-sdk")) => t)
    (should (lsp-dart--flutter-repo-p))))
 
@@ -38,7 +38,7 @@
 (ert-deftest lsp-dart--flutter-repo-p--not-flutter-executable-test ()
   (with-mock
    (mock (locate-dominating-file * "flutter") => "/not-sdk/bin")
-   (mock (file-regular-p "/not-sdk/bin/flutter") => t)
+   (mock (file-regular-p (f-join (f-root) "/not-sdk/bin/flutter")) => t)
    (mock (file-directory-p (f-join (f-root) "/not-sdk/bin/cache/dart-sdk")) => nil)
    (should-not (lsp-dart--flutter-repo-p))))
 
