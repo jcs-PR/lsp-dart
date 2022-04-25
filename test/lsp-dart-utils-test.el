@@ -26,7 +26,7 @@
   (with-mock
    (mock (locate-dominating-file * "flutter") => "/sdk/bin")
    (mock (file-regular-p "/sdk/bin/flutter") => t)
-   (mock (file-directory-p "/sdk/bin/cache/dart-sdk") => t)
+   (mock (file-directory-p (f-join (f-root) "/sdk/bin/cache/dart-sdk")) => t)
    (should (lsp-dart--flutter-repo-p))))
 
 (ert-deftest lsp-dart--flutter-repo-p--not-flutter-executable-test ()
