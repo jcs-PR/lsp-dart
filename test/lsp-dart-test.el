@@ -58,7 +58,7 @@
     (stub lsp-dart-get-sdk-dir => "/sdk")
     (should (equal (lsp-dart--server-command)
                    `("/sdk/bin/dart"
-                     (f-expand "/sdk/bin/snapshots/analysis_server.dart.snapshot" (f-root))
+                     ,(f-expand "/sdk/bin/snapshots/analysis_server.dart.snapshot" (f-root))
                      "--lsp"
                      "--client-id emacs.lsp-dart"
                      ,(concat "--client-version " lsp-dart-version-string))))))
