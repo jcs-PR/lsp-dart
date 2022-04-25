@@ -76,7 +76,7 @@
    (mock (lsp-dart-flutter-project-p) => t)
    (mock (lsp-dart-get-flutter-sdk-dir) => "/flutter-sdk")
    (mock (file-exists-p (if (eq system-type 'windows-nt)
-                            "d:/flutter-sdk/bin/cache/dart-sdk/"
+                            (concat (f-root) "flutter-sdk/bin/cache/dart-sdk/")
                           "/flutter-sdk/bin/cache/dart-sdk/"))
          => t)
    (should (equal (lsp-dart-get-sdk-dir)
