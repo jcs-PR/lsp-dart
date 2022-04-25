@@ -75,7 +75,10 @@
   (lsp-dart-test-from-flutter-project
    (mock (lsp-dart-flutter-project-p) => t)
    (mock (lsp-dart-get-flutter-sdk-dir) => "/flutter-sdk")
-   (mock (file-directory-p (f-join (f-root) "/flutter-sdk/bin/cache/dart-sdk/")) => t)
+   (mock (file-exists-p (if (eq system-type 'windows-nt)
+                            "d:/flutter-sdk/bin/cache/dart-sdk/"
+                          "/flutter-sdk/bin/cache/dart-sdk/"))
+         => t)
    (should (equal (lsp-dart-get-sdk-dir)
                   (if (eq system-type 'windows-nt)
                       (f-join (f-root) "/flutter-sdk/bin/cache/dart-sdk/")
