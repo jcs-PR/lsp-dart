@@ -112,11 +112,11 @@
 
 (ert-deftest lsp-dart-dart-command--test ()
   (lsp-dart-test-with-dart-sdk
-   (should (equal (lsp-dart-dart-command) (f-expand "bin/dart" dart-sdk)))))
+   (should (equal (lsp-dart-dart-command) (f-expand (if (eq system-type 'windows-nt) "bin/dart.bat" "bin/dart") dart-sdk)))))
 
 (ert-deftest lsp-dart-flutter-command--test ()
   (lsp-dart-test-with-flutter-sdk
-   (should (equal (lsp-dart-flutter-command) (f-expand "bin/flutter" flutter-sdk)))))
+   (should (equal (lsp-dart-flutter-command) (f-expand (if (eq system-type 'windows-nt) "bin/flutter.bat" "bin/flutter") flutter-sdk)))))
 
 (ert-deftest lsp-dart-get-project-root--test ()
   (lsp-dart-test-from-dart-project
